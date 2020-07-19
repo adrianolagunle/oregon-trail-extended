@@ -52,11 +52,57 @@ class Wagon {
         let totalFood = 0
         for (let index = 0; index < this.passengers.length; index = index + 1) {
             let currentPassenger = this.passengers[index]
-             totalFood = totalFood + currentPassenger.food
-             
+            totalFood = totalFood + currentPassenger.food
+
         }
         return totalFood
     }
 
-    
+
 }
+
+class Doctor extends Traveler {
+    constructor(name) {
+        super(name)
+
+    }
+
+    heal(traveler) {
+        traveler.isHealthy = true
+    }
+
+}
+
+class Hunter extends Traveler {
+    constructor(name) {
+        super(name)
+        this.food = 2
+        this.isHealthy = true
+    }
+
+    hunt() {
+        this.food = this.food + 5
+
+    }
+
+    eat() {
+        if (this.food < 2) {
+            this.isHealthy = false
+            this.food = this.food - 1
+        } else {
+            this.isHealthy = true
+            this.food = this.food - 2
+        }
+    }
+
+    giveFood(traveler, numOfFoodUnits) {
+
+        if (this.food >= numOfFoodUnits) {
+            traveler.food = traveler.food + numOfFoodUnits
+            this.food = this.food - numOfFoodUnits
+
+        }
+
+    }
+}
+
